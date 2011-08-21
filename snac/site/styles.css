@@ -1,0 +1,15 @@
+﻿body { font-family: "Gill Sans", Calibri, "Trebuchet MS", sans-serif; }
+h1   { margin-bottom: 1.5em; }
+ul   { list-style-type: none; }
+a    { color: #047; }
+a:hover { text-decoration: none; }
+a.snac-current { text-decoration: none; color: #000; }
+
+#content { margin: 0 10px 0 210px; }
+#sidebar { width: 178px; min-height: 100%; position: absolute; left: 0; top: 0;
+           padding: 0 0 0 40px; border-right: 1px solid #D8244B; }
+#main    { width: 76%; line-height: 140%; min-width: 500px;
+           padding: 30px 0 30px 30px; border-left: 1px solid #D8244B; }
+    
+#menu    { padding: 0; }
+#menu li { margin-bottom: 0.8em; font-size: medium; font-weight: bold; }
