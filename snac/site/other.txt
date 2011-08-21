@@ -1,0 +1,5 @@
+﻿$header$
+Another text
+
+$content$
+Absolutely another content
