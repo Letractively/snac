@@ -31,7 +31,7 @@ $(function() {
 				// "header" property is required
 				if (page_data.header == undefined)
 					reportError('missing required "header" property in "' + page + '" page file');
-			}, 'text').error(function(xhr) {
+			}, 'text').error(function() {
 				if (where == '404')
 					reportError('"404.txt" file is missing in site/ directory');
 				else navigateTo('404');
