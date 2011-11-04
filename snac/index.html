@@ -1,19 +1,37 @@
 ﻿ <!DOCTYPE html>
 <html>
-<!--
-	This is internal Snac file.
-	DO NOT EDIT IT!
--->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charser=utf-8" />
+	
+	<!-- Do not edit or remove lines from here -->
 	<script type="text/javascript" src="system/jquery-1.6.2.js"></script>
 	<script type="text/javascript" src="system/jquery.jqote2.js"></script>
 	<script type="text/javascript" src="system/jquery.ba-hashchange.js"></script>
 	<script type="text/javascript" src="system/snac.js"></script>
-	<link type="text/css" rel="stylesheet" href="site/styles.css" />
+	<!-- to here -->
+	
+	<link type="text/css" rel="stylesheet" href="styles.css" />
 </head>
 <body>
-	<div id="snacpage">
+
+	<div id="content">
+
+		<div id="sidebar">
+			<h1><a href="#index"><img src="images/snack.png" alt="<$= this.title $>" /></a></h1>
+			
+			<ul id="menu">
+				<li><a class="snac-link" href="index">Тестовая страница</a></li>
+				<li><a class="snac-link" href="features">Обзор возможностей</a></li>
+				<li><a class="snac-link" href="help">Как пользоваться</a></li>
+			</ul>
+		</div>
+
+		<div id="main">
+			<h2>{$= this.header $}</h2>
+			<div>{$= this.content $}</div>
+		</div>
+		
 	</div>
+	
 </body>
 </html>

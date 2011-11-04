@@ -19,7 +19,7 @@
         FUNC = '[object Function]';
 
     var n = 1, tag = '%',
-        qreg = /^[^<]*(<[\w\W]+>)[^>]*$/,
+        qreg = /^[^<]*(<[\w\W]+>)[>}]*$/,
         type_of = Object.prototype.toString;
 
     function raise(error, ext) {
@@ -130,8 +130,8 @@
 
             var str = '', index,
                 arr = tmpl.replace(/\s*<!\[CDATA\[\s*|\s*\]\]>\s*|[\r\n\t]/g, '')
-                    .split('<'+t).join(t+'>\x1b')
-                        .split(t+'>');
+                    .split('{'+t).join(t+'}\x1b')
+                        .split(t+'}');
 
             for ( var m=0,l=arr.length; m < l; m++ )
                 str += arr[m].charAt(0) !== '\x1b' ?
