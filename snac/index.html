@@ -11,27 +11,31 @@
 	<!-- to here -->
 	
 	<link type="text/css" rel="stylesheet" href="styles.css" />
-</head>
-<body>
+	
+	<script id="snac-template" type="text/html"><![CDATA[
+	
+		<div id="content">
 
-	<div id="content">
+			<div id="sidebar">
+				<h1><a href="#index"><img src="images/snack.png" alt="<$= this.title $>" /></a></h1>
+				
+				<ul id="menu">
+					<li><a class="snac-link" href="index">Тестовая страница</a></li>
+					<li><a class="snac-link" href="features">Обзор возможностей</a></li>
+					<li><a class="snac-link" href="help">Как пользоваться</a></li>
+				</ul>
+			</div>
 
-		<div id="sidebar">
-			<h1><a href="#index"><img src="images/snack.png" alt="<$= this.title $>" /></a></h1>
+			<div id="main">
+				<h2><$= this.header $></h2>
+				<div><$= this.content $></div>
+			</div>
 			
-			<ul id="menu">
-				<li><a class="snac-link" href="index">Тестовая страница</a></li>
-				<li><a class="snac-link" href="features">Обзор возможностей</a></li>
-				<li><a class="snac-link" href="help">Как пользоваться</a></li>
-			</ul>
-		</div>
-
-		<div id="main">
-			<h2>{$= this.header $}</h2>
-			<div>{$= this.content $}</div>
 		</div>
 		
-	</div>
+	]]></script>
+</head>
+<body>
 	
 </body>
 </html>

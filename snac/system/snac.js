@@ -4,18 +4,21 @@ $(function() {
 	{
 		var page = null,
 			templatefn = null,
-			page_data = null,
-			global_data = null;
-		const container = 'body',
+			page_data = {},
+			cache = {},
+			global_data = {},
+			template = '#snac-template',
+			container = 'body',
 			snac_link = 'a.snac-link',
 			current_link_class = 'snac-current';
 			
 		// compile page template
-		templatefn = $.jqotec(container, '$');
+		templatefn = $.jqotec(template, '$');
 		
 		// loading global data
 		$.ajax('global', {
 			dataType: 'text',
+			cache: false,
 			success: function(d) {
 				global_data = snacPage2JSON(d)
 			},
@@ -37,28 +40,36 @@ $(function() {
 		var navigateTo = function(where) {
 			page = (where || 'index');
 			
-			// when global data and page data are loaded page is ready to be displayed
-			$(container).ajaxStop(function() {
-				$(this).unbind('ajaxStop');
-				displayPage();
-			});
-			
-			// load page data
-			$.ajax(page, {
-				dataType: 'text',
-				statusCode: {
-					404: function() {
+			// no cached page data found
+			if (cache[page] == undefined) {
+				// when global data and page data are loaded page is ready to be displayed
+				$(container).ajaxStop(function() {
+					$(this).unbind('ajaxStop');
+					displayPage();
+				});
+				
+				// load page data
+				$.ajax(page, {
+					dataType: 'text',
+					cache: false,
+					success: function(d) {	
+						// save to cache
+						page_data = cache[page] = snacPage2JSON(d);
+						
+						if (page_data.header == undefined)
+							reportError('missing non-optional "header" property in "' + page + '" page file');
+					},
+					error: function() {
 						if (where == '404') reportError('file "404" not found');
 						else navigateTo('404');
 					}
-				},
-				success: function(d) {	
-					page_data = snacPage2JSON(d);
-					
-					if (page_data.header == undefined)
-						reportError('missing non-optional "header" property in "' + page + '" page file');
-				}
-			});
+				});
+			}
+			// read from cache
+			else {
+				page_data = cache[page];
+				displayPage();
+			}
 		}
 		
 		// renders and displays page
