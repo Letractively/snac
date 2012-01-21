@@ -5,7 +5,7 @@ a    { color: #047; }
 a:hover { text-decoration: none; }
 a.snac-current { text-decoration: none; color: #000; }
 
-#content { margin: 0 10px 0 210px; }
+#snac-content { margin: 0 10px 0 210px; }
 #sidebar { width: 178px; min-height: 100%; position: absolute; left: 0; top: 0;
            padding: 0 0 0 40px; border-right: 1px solid #D8244B; }
 #main    { width: 76%; line-height: 140%; min-width: 500px;
