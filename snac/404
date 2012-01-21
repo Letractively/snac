@@ -1,6 +1,6 @@
-﻿$ header $
+﻿$ pc-header $
 Ой, 404!
 
-$ content $
+$ pc-content $
 <p>Этой страницы не&nbsp;существует <nobr>:-(<nobr></p>
 <p>Кстати, настройка вида страницы с&nbsp;ошибкой 404&nbsp;&mdash; еще одна фича SNAC.</p>

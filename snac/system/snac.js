@@ -74,8 +74,13 @@ $(function() {
 		// renders and displays page
 		var displayPage = function() {
 			document.title = page_data.header;
+
 			// i don't really like it, but that works
-			$(container).html(template).autoRender($.extend(global_data, page_data));
+			$(container).html(template);
+			var merged_data = $.extend(global_data, page_data),
+				fn = $(container).compile(null, merged_data);
+			$(container).html(fn(merged_data));
+			
 			window.scrollTo(0, 0); // scrolling back to top
 			processSnacLinks();
 		}
