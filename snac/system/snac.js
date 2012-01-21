@@ -1,26 +1,25 @@
+/*! SNAC beta1 | www.mavsic.ru/snac | WTFPL */
 $(function() {
 
 	function Snac()
 	{
 		var page = null,
-			templatefn = null,
+			template = null, fn = null,
 			page_data = {},
 			cache = {},
 			global_data = {},
-			template = '#snac-template',
-			container = 'body',
+			container = '#snac-content',
 			snac_link = 'a.snac-link',
 			current_link_class = 'snac-current';
 			
-		// compile page template
-		templatefn = $.jqotec(template, '$');
+		template = $(container).html();
 		
 		// loading global data
 		$.ajax('global', {
 			dataType: 'text',
 			cache: false,
 			success: function(d) {
-				global_data = snacPage2JSON(d)
+				global_data = snacPage2Object(d)
 			},
 			error: function() {
 				reportError('"global" file is missing in site/ directory');
@@ -54,7 +53,7 @@ $(function() {
 					cache: false,
 					success: function(d) {	
 						// save to cache
-						page_data = cache[page] = snacPage2JSON(d);
+						page_data = cache[page] = snacPage2Object(d);
 						
 						if (page_data.header == undefined)
 							reportError('missing non-optional "header" property in "' + page + '" page file');
@@ -75,7 +74,8 @@ $(function() {
 		// renders and displays page
 		var displayPage = function() {
 			document.title = page_data.header;
-			$(container).jqotesub(templatefn, $.extend(global_data, page_data)); // render with jQote
+			// i don't really like it, but that works
+			$(container).html(template).autoRender($.extend(global_data, page_data));
 			window.scrollTo(0, 0); // scrolling back to top
 			processSnacLinks();
 		}
@@ -88,8 +88,8 @@ $(function() {
 			});
 		}
 		
-		// converts page file to JSON
-		var snacPage2JSON = function(str) {
+		// converts page file to javascript object
+		var snacPage2Object = function(str) {
 			var pairs = str.split(/[\r\n]+\s*\$\s*/);
 			var data = {};
 			for (var i = 0; i < pairs.length; i++)
