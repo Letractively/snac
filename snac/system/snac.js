@@ -4,7 +4,7 @@ $(function() {
 	function Snac()
 	{
 		var page = null,
-			template = null, fn = null,
+			template = null,
 			page_data = {},
 			cache = {},
 			global_data = {},
