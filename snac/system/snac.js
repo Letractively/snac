@@ -4,15 +4,13 @@ $(function() {
 	function Snac()
 	{
 		var page = null,
-			template = null,
+			template = $(container).html(),
 			page_data = {},
 			cache = {},
 			global_data = {},
 			container = '#snac-content',
 			snac_link = 'a.snac-link',
 			current_link_class = 'snac-current';
-			
-		template = $(container).html();
 		
 		// loading global data
 		$.ajax('global', {
