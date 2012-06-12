@@ -13,7 +13,7 @@ function Sten(container)
 				var classes = $(this).attr('class').split(/\s+/);
 				for (c in classes) {
 					var cl = classes[c];
-					if (cl.match(/^\$(\w|\@)+$/)) {
+					if (cl[0] == '$') {
 						var datapiece_attr = cl.split('@');
 						dirs.push({
 							target: $(this),
@@ -32,7 +32,10 @@ function Sten(container)
 				value = data[dir.datapiece];
 				
 			if (dir.attr) dir.target.attr(dir.attr, value);
-			else dir.target.html(value);
+			else {
+				dir.target.html(value);
+				dir.target.toggle(value != undefined);
+			}
 		}
 	}
 	
