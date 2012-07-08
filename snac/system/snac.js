@@ -34,6 +34,7 @@ function Sten(container)
 			if (dir.attr) dir.target.attr(dir.attr, value);
 			else {
 				dir.target.html(value);
+				alert(value != null);
 				dir.target.toggle(value != undefined);
 			}
 		}
